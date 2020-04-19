@@ -28,6 +28,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -36,4 +41,52 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function isAdmin()
+    {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'admin') {
+                return true;
+            }
+        }
+    }
+
+    public function isUser()
+    {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'user') {
+                return true;
+            }
+        }
+    }
+
+
+    public function isTeacher()
+    {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'teacher') {
+                return true;
+            }
+        }
+    }
+
+    public function isParent()
+    {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'parent') {
+                return true;
+            }
+        }
+    }
+
+
+    public function isChild()
+    {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'child') {
+                return true;
+            }
+        }
+    }
 }

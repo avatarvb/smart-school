@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('id_profile')->nullable();;
-            $table->integer('id_classroom')->nullable();;
-            $table->integer('id_programme')->nullable();;
-            $table->integer('id_level')->nullable();;
+            $table->integer('id_profile')->nullable();
+            $table->integer('id_classroom')->nullable();
+            $table->integer('id_programme')->nullable();
+            $table->integer('id_level')->nullable();
             $table->boolean('status')->default('0');
             $table->boolean('online')->default('0');
             $table->rememberToken();

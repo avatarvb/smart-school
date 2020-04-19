@@ -19,4 +19,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+// all routes with auth middleware
+Route::group(['middleware' => ['auth']], function () {
+    //routes permission-denied
+    Route::get('/permission-denied', 'UserController@permissionDenied')->name('nopermission');
+
+
+    // user  routes with authentication
+    Route::get('/home', 'HomeController@index')->name('user-home');
+
+
+    // admin routes check-admin
+    Route::group(['middleware' => ['admin']], function () {
+        Route::get('/admin', 'AdminController@index')->name('admin-home');
+    });
+});
